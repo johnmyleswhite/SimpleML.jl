@@ -19,7 +19,7 @@ function generate_f(X::Matrix, Y::Vector)
 		for i in 1:n
 			s += (Y[i] - dot(X[:, i], beta))^2
 		end
-		return s / n
+		return s
 	end
 	return f
 end
@@ -44,7 +44,7 @@ function generate_h!(X::Matrix, Y::Vector)
 		fill!(storage, 0.0)
 		for j in 1:p
 			for k in j:p
-				entry = 2.0 * dot(X[:, j], X[:, k])
+				entry = 2.0 * dot(vec(X[j, :]), vec(X[k, :]))
 				storage[j, k] += entry
 				storage[k, j] += entry
 			end

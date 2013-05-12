@@ -20,13 +20,13 @@ f(beta)
 g!(beta, gr)
 h!(beta, hs)
 
-optimize(f, [0.0, 0.0], method = :nelder_mead)
-optimize(f, [0.0, 0.0], method = :simulated_annealing)
-optimize(f, g!, [0.0, 0.0], method = :l_bfgs)
-optimize(f, g!, [0.0, 0.0], method = :bfgs)
-optimize(f, g!, h!, [0.0, 0.0], method = :newton)
+optimize(f, zeros(p), method = :nelder_mead)
+optimize(f, zeros(p), method = :simulated_annealing)
+optimize(f, g!, zeros(p), method = :l_bfgs)
+optimize(f, g!, zeros(p), method = :bfgs)
+optimize(f, g!, h!, zeros(p), method = :newton)
 
-beta_hat = optimize(f, g!, [0.0, 0.0], method = :l_bfgs).minimum
+beta_hat = optimize(f, g!, zeros(p), method = :l_bfgs).minimum
 
 f(beta_hat)
 g!(beta_hat, gr)
